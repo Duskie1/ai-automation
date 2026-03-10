@@ -1,0 +1,19 @@
+{
+  "name": "ai-automation-memory-mcp",
+  "version": "1.0.0",
+  "description": "Memory MCP server for AI automation - knowledge graph with JSONL storage",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "memory-mcp": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "keywords": ["mcp", "memory", "knowledge-graph"],
+  "author": "",
+  "license": "MIT"
+}

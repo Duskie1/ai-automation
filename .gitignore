@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Memory data (can be git-tracked if desired)
+# mcp-server/data/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
