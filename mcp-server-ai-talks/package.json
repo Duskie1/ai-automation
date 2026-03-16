@@ -1,0 +1,13 @@
+{
+  "name": "ai-automation-ai-talks-mcp",
+  "version": "1.0.0",
+  "description": "AI-Talks customer management MCP server for AI automation",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}

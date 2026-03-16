@@ -4,6 +4,11 @@
       "command": "node",
       "args": ["mcp-server/src/index.js"],
       "serverInstructions": "Knowledge graph memory system for AI automation. Create, search, and manage entities (lessons, patterns, preferences) with relations. Use for persistent learning, tracking successes/failures, and storing workflow configurations. Tools: memory_create_entities, memory_create_relations, memory_add_observations, memory_read_graph, memory_search_nodes, memory_open_nodes, memory_delete_entities, memory_delete_observations, memory_delete_relations, check_memory_health, check_memory_contradictions, archive_stale_entities, consolidate_memory_entities, list_archived_entities, audit_analysis_learnings."
+    },
+    "ai-talks": {
+      "command": "node",
+      "args": ["mcp-server-ai-talks/src/index.js"],
+      "serverInstructions": "Customer management for AI voice automation. Manage business configurations, knowledge bases, and integration settings. Use to retrieve customer context for AI responses. Tools: ai_talks_list_customers, ai_talks_get_customer, ai_talks_get_knowledge, ai_talks_search_customers, ai_talks_create_customer, ai_talks_update_customer, ai_talks_delete_customer."
     }
   }
 }
