@@ -1,0 +1,11 @@
+{
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "memory"
+  ],
+  "permissions": {
+    "allow": [
+      "mcp__memory__memory_search_nodes"
+    ]
+  }
+}
