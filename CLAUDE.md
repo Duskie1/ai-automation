@@ -1,6 +1,6 @@
 # Project Context: ai-automation
 
-AI automation workspace with knowledge graph memory system for persistent learning.
+AI automation workspace with claude-mem for persistent, proactive memory across sessions.
 
 ---
 
@@ -82,64 +82,20 @@ Apply these proactively to ANY task:
 
 ## Architecture Overview
 
-### MCP Servers
+### Memory System: claude-mem
 
-- **memory** — Knowledge graph memory system with JSONL storage
-  - Entity types: `lesson_learned`, `pattern_detected`, `workflow_config`, `user_preference`, `success_pattern`, `error_pattern`
-  - Relation types: `caused_by`, `prevents`, `applies_to`, `related_to`, `supersedes`
-  - Tools: `memory_create_entities`, `memory_create_relations`, `memory_add_observations`, `memory_read_graph`, `memory_search_nodes`, `memory_open_nodes`, `memory_delete_entities`, `memory_delete_observations`, `memory_delete_relations`, `check_memory_health`, `check_memory_contradictions`, `archive_stale_entities`, `consolidate_memory_entities`, `list_archived_entities`, `audit_analysis_learnings`
+Auto-captures observations via lifecycle hooks and loads context at session start.
+
+**To actively search** (when auto-context isn't enough):
+1. `search(query="...")` → Get IDs (~50 tokens)
+2. `timeline(anchor=ID)` → Get context
+3. `get_observations(ids=[...])` → Full details
+
+**Web UI:** http://localhost:37777
 
 ### Use Existing MCP Tools First
 
-If an MCP tool exists for a task, USE IT instead of manual editing, bash, or Python scripts. MCP tools provide validation and consistency that manual operations bypass.
-
----
-
-## Memory System
-
-**Session Start Protocol (MANDATORY):**
-- Search memory for relevant lessons BEFORE beginning work
-- Apply recalled lessons proactively throughout the session
-- If no relevant lessons found, proceed normally
-
-**Memory Creation Workflow (MANDATORY):**
-1. **SEARCH** for existing similar memories: `mcp__memory__memory_search_nodes query="{topic}"`
-2. **EVALUATE:** Exact match → SKIP | Similar exists → UPDATE | Nothing found → CREATE
-3. **EXPLAIN VALUE:** "This is worth remembering because: [reason]"
-4. **ASK** for confirmation (in discussion mode)
-5. **VALIDATE:** No contradiction with high-confidence lessons or safety rules
-
-**Entity Types:**
-| Type | Purpose |
-|------|---------|
-| `lesson_learned` | General learnings from workflows |
-| `pattern_detected` | Recurring issues or patterns |
-| `workflow_config` | Automation settings |
-| `user_preference` | User-specific settings |
-| `success_pattern` | Approaches that work reliably |
-| `error_pattern` | Common failure modes |
-
-**Relation Types:**
-| Type | Purpose |
-|------|---------|
-| `caused_by` | Root cause links |
-| `prevents` | Prevention relationships |
-| `applies_to` | Applicability scope |
-| `related_to` | General relationships |
-| `supersedes` | Version relationships |
-
-**Conflict Prevention:**
-| Scenario | Action |
-|----------|--------|
-| New contradicts old (old is LOW confidence) | Supersede old with new |
-| New contradicts old (old is HIGH confidence) | **REJECT new**, ask user |
-| New partially overlaps | Merge into existing |
-| New extends existing | Add observations to existing |
-
-**Key rules:**
-- In discussion mode: **ALWAYS ask before creating** memory entities
-- Always SEARCH before creating (no duplicates)
-- Protected knowledge (CLAUDE.md standards) can NEVER be overridden by learning
+If an MCP tool exists for a task, USE IT instead of manual editing, bash, or Python scripts.
 
 ---
 
@@ -153,21 +109,11 @@ If an MCP tool exists for a task, USE IT instead of manual editing, bash, or Pyt
 - Don't wait to be asked — proactively surface relevant frameworks when topics arise
 - When applying a framework: briefly explain it, then ask a coaching question to help the user apply it
 
-### Memory Search Protocol (MANDATORY)
+### Memory Search Protocol
 
-**Before answering ANY question about Buy Back Your Time frameworks, ALWAYS:**
-1. Call `mcp__memory__memory_search_nodes` with relevant keywords (e.g., `buyback_time delegation`, `buyback_time hiring`, `buyback_time leadership`)
-2. Use the retrieved entity observations to give a detailed, accurate answer
-3. Only fall back to the quick reference tables below if memory search is unavailable
+**Before answering Buy Back Your Time questions**, search: `search(query="buyback delegation")` then `get_observations(ids=[...])`
 
-**Entity prefix:** All framework entities use `buyback_time_*` naming. Search examples:
-- User asks about delegation → search `buyback_time drip delegation`
-- User asks about hiring → search `buyback_time hiring method`
-- User asks about time management → search `buyback_time perfect week`
-- User asks about leadership → search `buyback_time transformational leadership`
-- User asks about SOPs/playbooks → search `buyback_time camcorder playbook`
-
-**For deep dives** (stories, full chapter content): Read `data/books/Buy_Back_Your_Time_-_Dan_Martell-340-1/markdown/full_text.md`
+**For deep dives:** `data/books/Buy_Back_Your_Time_-_Dan_Martell-340-1/markdown/full_text.md`
 
 ### Core Principles (Always Available)
 
