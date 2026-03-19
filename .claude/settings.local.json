@@ -1,11 +1,21 @@
 {
+  "permissions": {
+    "allow": [
+      "mcp__memory__memory_search_nodes",
+      "mcp__web-search-prime__web_search_prime",
+      "mcp__zread__get_repo_structure",
+      "mcp__web-reader__webReader",
+      "mcp__zread__read_file",
+      "mcp__zread__search_doc",
+      "mcp__memory__memory_read_graph",
+      "mcp__memory__memory_create_entities",
+      "mcp__memory__memory_create_relations",
+      "mcp__plugin_claude-mem_mcp-search____IMPORTANT",
+      "mcp__plugin_claude-mem_mcp-search__search"
+    ]
+  },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "memory"
-  ],
-  "permissions": {
-    "allow": [
-      "mcp__memory__memory_search_nodes"
-    ]
-  }
+  ]
 }
