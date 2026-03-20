@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TekBridge Logo Options</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  :root {
+    --bg: #f5f5f5;
+    --white: #ffffff;
+    --text: #1a1a1a;
+    --text-mid: #555;
+    --text-light: #888;
+    --accent: #6366f1;
+    --accent-dark: #4f46e5;
+    --border: #e5e5e5;
+    --r: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 40px 20px 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .header p {
+    font-size: 16px;
+    color: var(--text-mid);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: var(--r);
+    border: 1px solid var(--border);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-number {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .card-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+
+  /* Main showcase area */
+  .showcase {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .showcase-main {
+    width: 100%;
+    height: 160px;
+    border-radius: 12px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .showcase-main svg {
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.08));
+  }
+
+  .showcase-dark {
+    width: 100%;
+    height: 100px;
+    border-radius: 12px;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+  }
+
+  .showcase-dark svg {
+    stroke: #fff;
+    fill: none;
+  }
+
+  /* Size scale row */
+  .sizes {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .size-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .size-item span {
+    font-size: 11px;
+    color: var(--text-light);
+    font-weight: 500;
+  }
+
+  /* Lockup preview */
+  .lockup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .lockup-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+
+  .lockup-sub {
+    font-size: 11px;
+    color: var(--text-light);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .grid { grid-template-columns: 1fr; max-width: 400px; }
+    .header h1 { font-size: 24px; }
+    body { padding: 24px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>TekBridge Logo Concepts</h1>
+  <p>Five directions for the brand mark. Each communicates "bridge in technologies" — connection, integration, trust.</p>
+</div>
+
+<div class="grid">
+
+  <!-- CONCEPT 1: NODE BRIDGE -->
+  <div class="card">
+    <div class="card-number">Concept 1</div>
+    <div class="card-name">Node Bridge</div>
+    <div class="card-desc">Two nodes connected by a clean arch. Connection between endpoints — pure, geometric, timeless.</div>
+    <div class="showcase">
+      <div class="showcase-main">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="4" cy="20" r="2.5"/>
+          <circle cx="20" cy="20" r="2.5"/>
+          <path d="M4 17.5 C4 10, 20 10, 20 17.5"/>
+          <line x1="4" y1="20" x2="20" y2="20"/>
+          <circle cx="12" cy="10" r="1.2" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      <div class="showcase-dark">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="4" cy="20" r="2.5"/>
+          <circle cx="20" cy="20" r="2.5"/>
+          <path d="M4 17.5 C4 10, 20 10, 20 17.5"/>
+          <line x1="4" y1="20" x2="20" y2="20"/>
+          <circle cx="12" cy="10" r="1.2" fill="currentColor" stroke="none"/>
+        </svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="4" cy="20" r="2.5"/>
+          <circle cx="20" cy="20" r="2.5"/>
+          <path d="M4 17.5 C4 10, 20 10, 20 17.5"/>
+          <line x1="4" y1="20" x2="20" y2="20"/>
+          <circle cx="12" cy="10" r="1.2" fill="currentColor" stroke="none"/>
+        </svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="4" cy="20" r="2.5"/>
+          <circle cx="20" cy="20" r="2.5"/>
+          <path d="M4 17.5 C4 10, 20 10, 20 17.5"/>
+          <line x1="4" y1="20" x2="20" y2="20"/>
+          <circle cx="12" cy="10" r="1.2" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      <div class="sizes">
+        <div class="size-item"><span>48px</span><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="4" cy="20" r="2.5"/><circle cx="20" cy="20" r="2.5"/><path d="M4 17.5 C4 10, 20 10, 20 17.5"/><line x1="4" y1="20" x2="20" y2="20"/><circle cx="12" cy="10" r="1.2" fill="currentColor" stroke="none"/></svg></div>
+        <div class="size-item"><span>32px</span><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="4" cy="20" r="2.5"/><circle cx="20" cy="20" r="2.5"/><path d="M4 17.5 C4 10, 20 10, 20 17.5"/><line x1="4" y1="20" x2="20" y2="20"/><circle cx="12" cy="10" r="1.2" fill="currentColor" stroke="none"/></svg></div>
+        <div class="size-item"><span>24px</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="4" cy="20" r="2.5"/><circle cx="20" cy="20" r="2.5"/><path d="M4 17.5 C4 10, 20 10, 20 17.5"/><line x1="4" y1="20" x2="20" y2="20"/><circle cx="12" cy="10" r="1.2" fill="currentColor" stroke="none"/></svg></div>
+        <div class="size-item"><span>16px</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="4" cy="20" r="2.5"/><circle cx="20" cy="20" r="2.5"/><path d="M4 17.5 C4 10, 20 10, 20 17.5"/><line x1="4" y1="20" x2="20" y2="20"/><circle cx="12" cy="10" r="1.2" fill="currentColor" stroke="none"/></svg></div>
+      </div>
+      <div class="lockup">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="4" cy="20" r="2.5"/><circle cx="20" cy="20" r="2.5"/><path d="M4 17.5 C4 10, 20 10, 20 17.5"/><line x1="4" y1="20" x2="20" y2="20"/><circle cx="12" cy="10" r="1.2" fill="#6366f1" stroke="none"/></svg>
+        <div>
+          <div class="lockup-text">TekBridge</div>
+          <div class="lockup-sub">TECHNOLOGY BRIDGING</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONCEPT 2: CIRCUIT ARCH -->
+  <div class="card">
+    <div class="card-number">Concept 2</div>
+    <div class="card-name">Circuit Arch</div>
+    <div class="card-desc">Bridge arch with circuit traces and node dots. Tech-forward — bridging systems at the infrastructure level.</div>
+    <div class="showcase">
+      <div class="showcase-main">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 16 C2 8, 22 8, 22 16"/>
+          <line x1="2" y1="16" x2="22" y2="16"/>
+          <line x1="2" y1="20" x2="6" y2="20"/>
+          <line x1="18" y1="20" x2="22" y2="20"/>
+          <line x1="6" y1="16" x2="6" y2="20"/>
+          <line x1="18" y1="16" x2="18" y2="20"/>
+          <line x1="12" y1="8" x2="12" y2="4"/>
+          <circle cx="6" cy="16" r="1.5" fill="currentColor" stroke="none"/>
+          <circle cx="12" cy="8" r="1.5" fill="currentColor" stroke="none"/>
+          <circle cx="18" cy="16" r="1.5" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      <div class="showcase-dark">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16 C2 8, 22 8, 22 16"/><line x1="2" y1="16" x2="22" y2="16"/><line x1="2" y1="20" x2="6" y2="20"/><line x1="18" y1="20" x2="22" y2="20"/><line x1="6" y1="16" x2="6" y2="20"/><line x1="18" y1="16" x2="18" y2="20"/><line x1="12" y1="8" x2="12" y2="4"/><circle cx="6" cy="16" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="8" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="16" r="1.5" fill="currentColor" stroke="none"/></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16 C2 8, 22 8, 22 16"/><line x1="2" y1="16" x2="22" y2="16"/><line x1="2" y1="20" x2="6" y2="20"/><line x1="18" y1="20" x2="22" y2="20"/><line x1="6" y1="16" x2="6" y2="20"/><line x1="18" y1="16" x2="18" y2="20"/><line x1="12" y1="8" x2="12" y2="4"/><circle cx="6" cy="16" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="8" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="16" r="1.5" fill="currentColor" stroke="none"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16 C2 8, 22 8, 22 16"/><line x1="2" y1="16" x2="22" y2="16"/><line x1="2" y1="20" x2="6" y2="20"/><line x1="18" y1="20" x2="22" y2="20"/><line x1="6" y1="16" x2="6" y2="20"/><line x1="18" y1="16" x2="18" y2="20"/><line x1="12" y1="8" x2="12" y2="4"/><circle cx="6" cy="16" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="8" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="16" r="1.5" fill="currentColor" stroke="none"/></svg>
+      </div>
+      <div class="sizes">
+        <div class="size-item"><span>48px</span><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16 C2 8, 22 8, 22 16"/><line x1="2" y1="16" x2="22" y2="16"/><line x1="2" y1="20" x2="6" y2="20"/><line x1="18" y1="20" x2="22" y2="20"/><line x1="6" y1="16" x2="6" y2="20"/><line x1="18" y1="16" x2="18" y2="20"/><line x1="12" y1="8" x2="12" y2="4"/><circle cx="6" cy="16" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="8" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="16" r="1.5" fill="currentColor" stroke="none"/></svg></div>
+        <div class="size-item"><span>32px</span><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16 C2 8, 22 8, 22 16"/><line x1="2" y1="16" x2="22" y2="16"/><line x1="2" y1="20" x2="6" y2="20"/><line x1="18" y1="20" x2="22" y2="20"/><line x1="6" y1="16" x2="6" y2="20"/><line x1="18" y1="16" x2="18" y2="20"/><line x1="12" y1="8" x2="12" y2="4"/><circle cx="6" cy="16" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="8" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="16" r="1.5" fill="currentColor" stroke="none"/></svg></div>
+        <div class="size-item"><span>24px</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16 C2 8, 22 8, 22 16"/><line x1="2" y1="16" x2="22" y2="16"/><line x1="2" y1="20" x2="6" y2="20"/><line x1="18" y1="20" x2="22" y2="20"/><line x1="6" y1="16" x2="6" y2="20"/><line x1="18" y1="16" x2="18" y2="20"/><line x1="12" y1="8" x2="12" y2="4"/><circle cx="6" cy="16" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="8" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="16" r="1.5" fill="currentColor" stroke="none"/></svg></div>
+        <div class="size-item"><span>16px</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16 C2 8, 22 8, 22 16"/><line x1="2" y1="16" x2="22" y2="16"/><line x1="2" y1="20" x2="6" y2="20"/><line x1="18" y1="20" x2="22" y2="20"/><line x1="6" y1="16" x2="6" y2="20"/><line x1="18" y1="16" x2="18" y2="20"/><line x1="12" y1="8" x2="12" y2="4"/><circle cx="6" cy="16" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="8" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="16" r="1.5" fill="currentColor" stroke="none"/></svg></div>
+      </div>
+      <div class="lockup">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16 C2 8, 22 8, 22 16"/><line x1="2" y1="16" x2="22" y2="16"/><line x1="2" y1="20" x2="6" y2="20"/><line x1="18" y1="20" x2="22" y2="20"/><line x1="6" y1="16" x2="6" y2="20"/><line x1="18" y1="16" x2="18" y2="20"/><line x1="12" y1="8" x2="12" y2="4"/><circle cx="6" cy="16" r="1.5" fill="#6366f1" stroke="none"/><circle cx="12" cy="8" r="1.5" fill="#6366f1" stroke="none"/><circle cx="18" cy="16" r="1.5" fill="#6366f1" stroke="none"/></svg>
+        <div>
+          <div class="lockup-text">TekBridge</div>
+          <div class="lockup-sub">TECHNOLOGY BRIDGING</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONCEPT 3: INTERLOCK -->
+  <div class="card">
+    <div class="card-number">Concept 3</div>
+    <div class="card-name">Interlock</div>
+    <div class="card-desc">Two geometric shapes interlocking — integration of different systems into one. Minimal, memorable, modern.</div>
+    <div class="showcase">
+      <div class="showcase-main">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 4 L16 4 L20 12 L16 20 L8 20 L4 12 Z"/>
+          <path d="M4 12 L12 12 L20 12"/>
+          <path d="M12 4 L12 20"/>
+          <rect x="8" y="4" width="8" height="8" rx="1" stroke-dasharray="0" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="showcase-dark">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4 L16 4 L20 12 L16 20 L8 20 L4 12 Z"/><path d="M4 12 L12 12 L20 12"/><path d="M12 4 L12 20"/><rect x="8" y="4" width="8" height="8" rx="1" opacity="0.4"/></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4 L16 4 L20 12 L16 20 L8 20 L4 12 Z"/><path d="M4 12 L12 12 L20 12"/><path d="M12 4 L12 20"/><rect x="8" y="4" width="8" height="8" rx="1" opacity="0.4"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4 L16 4 L20 12 L16 20 L8 20 L4 12 Z"/><path d="M4 12 L12 12 L20 12"/><path d="M12 4 L12 20"/><rect x="8" y="4" width="8" height="8" rx="1" opacity="0.4"/></svg>
+      </div>
+      <div class="sizes">
+        <div class="size-item"><span>48px</span><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4 L16 4 L20 12 L16 20 L8 20 L4 12 Z"/><path d="M4 12 L12 12 L20 12"/><path d="M12 4 L12 20"/><rect x="8" y="4" width="8" height="8" rx="1" opacity="0.4"/></svg></div>
+        <div class="size-item"><span>32px</span><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4 L16 4 L20 12 L16 20 L8 20 L4 12 Z"/><path d="M4 12 L12 12 L20 12"/><path d="M12 4 L12 20"/><rect x="8" y="4" width="8" height="8" rx="1" opacity="0.4"/></svg></div>
+        <div class="size-item"><span>24px</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4 L16 4 L20 12 L16 20 L8 20 L4 12 Z"/><path d="M4 12 L12 12 L20 12"/><path d="M12 4 L12 20"/><rect x="8" y="4" width="8" height="8" rx="1" opacity="0.4"/></svg></div>
+        <div class="size-item"><span>16px</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4 L16 4 L20 12 L16 20 L8 20 L4 12 Z"/><path d="M4 12 L12 12 L20 12"/><path d="M12 4 L12 20"/><rect x="8" y="4" width="8" height="8" rx="1" opacity="0.4"/></svg></div>
+      </div>
+      <div class="lockup">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4 L16 4 L20 12 L16 20 L8 20 L4 12 Z"/><path d="M4 12 L12 12 L20 12"/><path d="M12 4 L12 20"/><rect x="8" y="4" width="8" height="8" rx="1" opacity="0.4"/></svg>
+        <div>
+          <div class="lockup-text">TekBridge</div>
+          <div class="lockup-sub">TECHNOLOGY BRIDGING</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONCEPT 4: WAVEFORM BRIDGE -->
+  <div class="card">
+    <div class="card-number">Concept 4</div>
+    <div class="card-name">Waveform Bridge</div>
+    <div class="card-desc">Signal waveform forming a bridge silhouette — communication, voice, data flow. Dynamic and expressive.</div>
+    <div class="showcase">
+      <div class="showcase-main">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 14 Q6 6, 8 10 Q10 14, 12 8 Q14 2, 16 10 Q18 14, 22 14"/>
+          <line x1="2" y1="14" x2="22" y2="14"/>
+          <line x1="2" y1="18" x2="22" y2="18"/>
+          <line x1="4" y1="14" x2="4" y2="18"/>
+          <line x1="20" y1="14" x2="20" y2="18"/>
+          <line x1="8" y1="14" x2="8" y2="18"/>
+          <line x1="16" y1="14" x2="16" y2="18"/>
+        </svg>
+      </div>
+      <div class="showcase-dark">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14 Q6 6, 8 10 Q10 14, 12 8 Q14 2, 16 10 Q18 14, 22 14"/><line x1="2" y1="14" x2="22" y2="14"/><line x1="2" y1="18" x2="22" y2="18"/><line x1="4" y1="14" x2="4" y2="18"/><line x1="20" y1="14" x2="20" y2="18"/><line x1="8" y1="14" x2="8" y2="18"/><line x1="16" y1="14" x2="16" y2="18"/></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14 Q6 6, 8 10 Q10 14, 12 8 Q14 2, 16 10 Q18 14, 22 14"/><line x1="2" y1="14" x2="22" y2="14"/><line x1="2" y1="18" x2="22" y2="18"/><line x1="4" y1="14" x2="4" y2="18"/><line x1="20" y1="14" x2="20" y2="18"/><line x1="8" y1="14" x2="8" y2="18"/><line x1="16" y1="14" x2="16" y2="18"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14 Q6 6, 8 10 Q10 14, 12 8 Q14 2, 16 10 Q18 14, 22 14"/><line x1="2" y1="14" x2="22" y2="14"/><line x1="2" y1="18" x2="22" y2="18"/><line x1="4" y1="14" x2="4" y2="18"/><line x1="20" y1="14" x2="20" y2="18"/><line x1="8" y1="14" x2="8" y2="18"/><line x1="16" y1="14" x2="16" y2="18"/></svg>
+      </div>
+      <div class="sizes">
+        <div class="size-item"><span>48px</span><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14 Q6 6, 8 10 Q10 14, 12 8 Q14 2, 16 10 Q18 14, 22 14"/><line x1="2" y1="14" x2="22" y2="14"/><line x1="2" y1="18" x2="22" y2="18"/><line x1="4" y1="14" x2="4" y2="18"/><line x1="20" y1="14" x2="20" y2="18"/><line x1="8" y1="14" x2="8" y2="18"/><line x1="16" y1="14" x2="16" y2="18"/></svg></div>
+        <div class="size-item"><span>32px</span><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14 Q6 6, 8 10 Q10 14, 12 8 Q14 2, 16 10 Q18 14, 22 14"/><line x1="2" y1="14" x2="22" y2="14"/><line x1="2" y1="18" x2="22" y2="18"/><line x1="4" y1="14" x2="4" y2="18"/><line x1="20" y1="14" x2="20" y2="18"/><line x1="8" y1="14" x2="8" y2="18"/><line x1="16" y1="14" x2="16" y2="18"/></svg></div>
+        <div class="size-item"><span>24px</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14 Q6 6, 8 10 Q10 14, 12 8 Q14 2, 16 10 Q18 14, 22 14"/><line x1="2" y1="14" x2="22" y2="14"/><line x1="2" y1="18" x2="22" y2="18"/><line x1="4" y1="14" x2="4" y2="18"/><line x1="20" y1="14" x2="20" y2="18"/><line x1="8" y1="14" x2="8" y2="18"/><line x1="16" y1="14" x2="16" y2="18"/></svg></div>
+        <div class="size-item"><span>16px</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14 Q6 6, 8 10 Q10 14, 12 8 Q14 2, 16 10 Q18 14, 22 14"/><line x1="2" y1="14" x2="22" y2="14"/><line x1="2" y1="18" x2="22" y2="18"/><line x1="4" y1="14" x2="4" y2="18"/><line x1="20" y1="14" x2="20" y2="18"/><line x1="8" y1="14" x2="8" y2="18"/><line x1="16" y1="14" x2="16" y2="18"/></svg></div>
+      </div>
+      <div class="lockup">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 14 Q6 6, 8 10 Q10 14, 12 8 Q14 2, 16 10 Q18 14, 22 14"/><line x1="2" y1="14" x2="22" y2="14"/><line x1="2" y1="18" x2="22" y2="18"/><line x1="4" y1="14" x2="4" y2="18"/><line x1="20" y1="14" x2="20" y2="18"/><line x1="8" y1="14" x2="8" y2="18"/><line x1="16" y1="14" x2="16" y2="18"/></svg>
+        <div>
+          <div class="lockup-text">TekBridge</div>
+          <div class="lockup-sub">TECHNOLOGY BRIDGING</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONCEPT 5: T-BRIDGE -->
+  <div class="card">
+    <div class="card-number">Concept 5</div>
+    <div class="card-name">T-Bridge</div>
+    <div class="card-desc">Stylized "T" with bridge arch crossbar. Strong lettermark identity — confident, works at any size.</div>
+    <div class="showcase">
+      <div class="showcase-main">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="2" x2="12" y2="22"/>
+          <path d="M3 8 C3 5, 21 5, 21 8"/>
+          <line x1="3" y1="8" x2="3" y2="12"/>
+          <line x1="21" y1="8" x2="21" y2="12"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+        </svg>
+      </div>
+      <div class="showcase-dark">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M3 8 C3 5, 21 5, 21 8"/><line x1="3" y1="8" x2="3" y2="12"/><line x1="21" y1="8" x2="21" y2="12"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M3 8 C3 5, 21 5, 21 8"/><line x1="3" y1="8" x2="3" y2="12"/><line x1="21" y1="8" x2="21" y2="12"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M3 8 C3 5, 21 5, 21 8"/><line x1="3" y1="8" x2="3" y2="12"/><line x1="21" y1="8" x2="21" y2="12"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+      </div>
+      <div class="sizes">
+        <div class="size-item"><span>48px</span><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M3 8 C3 5, 21 5, 21 8"/><line x1="3" y1="8" x2="3" y2="12"/><line x1="21" y1="8" x2="21" y2="12"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div>
+        <div class="size-item"><span>32px</span><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M3 8 C3 5, 21 5, 21 8"/><line x1="3" y1="8" x2="3" y2="12"/><line x1="21" y1="8" x2="21" y2="12"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div>
+        <div class="size-item"><span>24px</span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M3 8 C3 5, 21 5, 21 8"/><line x1="3" y1="8" x2="3" y2="12"/><line x1="21" y1="8" x2="21" y2="12"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div>
+        <div class="size-item"><span>16px</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M3 8 C3 5, 21 5, 21 8"/><line x1="3" y1="8" x2="3" y2="12"/><line x1="21" y1="8" x2="21" y2="12"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div>
+      </div>
+      <div class="lockup">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M3 8 C3 5, 21 5, 21 8"/><line x1="3" y1="8" x2="3" y2="12"/><line x1="21" y1="8" x2="21" y2="12"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+        <div>
+          <div class="lockup-text">TekBridge</div>
+          <div class="lockup-sub">TECHNOLOGY BRIDGING</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
