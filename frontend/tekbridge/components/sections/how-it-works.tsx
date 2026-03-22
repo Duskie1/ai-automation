@@ -1,15 +1,15 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 import { Container } from "../ui/container";
-import { ScrollReveal } from "../ui/scroll-reveal";
 
 export function HowItWorks() {
   const t = useTranslations();
 
   const steps = [
     {
-      num: 1,
+      num: "01",
       title: t("wf1_title"),
       desc: t("wf1_desc"),
       icon: (
@@ -17,10 +17,9 @@ export function HowItWorks() {
           <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
         </svg>
       ),
-      color: "bg-accent-brand-soft text-accent-brand border-accent-brand/20",
     },
     {
-      num: 2,
+      num: "02",
       title: t("wf2_title"),
       desc: t("wf2_desc"),
       icon: (
@@ -30,10 +29,9 @@ export function HowItWorks() {
           <line x1="12" y1="19" x2="12" y2="22" />
         </svg>
       ),
-      color: "bg-green-soft text-green border-green/20",
     },
     {
-      num: 3,
+      num: "03",
       title: t("wf3_title"),
       desc: t("wf3_desc"),
       icon: (
@@ -42,55 +40,95 @@ export function HowItWorks() {
           <line x1="16" y1="2" x2="16" y2="6" />
           <line x1="8" y1="2" x2="8" y2="6" />
           <line x1="3" y1="10" x2="21" y2="10" />
-          <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" />
+          <path d="M9 16l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       ),
-      color: "bg-[#fef3c7] text-[#d97706] border-[#d97706]/20",
     },
   ];
 
   return (
-    <section id="how-it-works" className="py-[clamp(64px,12vw,96px)]">
+    <section id="how-it-works" className="py-24 md:py-32 lg:py-40 bg-bg-alt">
       <Container>
-        <ScrollReveal>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
           <h2 className="text-center mb-4">{t("how_title")}</h2>
-        </ScrollReveal>
+        </motion.div>
 
-        <ScrollReveal delay={100}>
-          <p className="text-center text-text-faint max-w-[560px] mx-auto mb-12 leading-[1.65]">
-            {t("how_desc")}
-          </p>
-        </ScrollReveal>
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center text-text-faint max-w-[560px] mx-auto mb-16 leading-relaxed"
+        >
+          {t("how_desc")}
+        </motion.p>
 
-        <ScrollReveal delay={200}>
-          <div className="flex flex-col md:flex-row gap-4 md:gap-0">
-            {steps.map((step, i) => (
-              <div key={step.num} className="flex-1 relative">
-                {/* Connector line */}
-                {i < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-12 left-[calc(50%+32px)] right-0 w-full h-px bg-border" />
-                )}
-
-                <div className="bg-bg border border-border rounded-[16px] p-6 text-center relative hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300">
-                  {/* Watermark number */}
-                  <div className="absolute top-4 right-4 font-display text-[4rem] leading-none opacity-[0.04] pointer-events-none select-none">
-                    {step.num}
+        <div className="flex flex-col md:flex-row gap-6 md:gap-4 max-w-4xl mx-auto">
+          {steps.map((step, i) => (
+            <div key={step.num} className="flex-1 relative">
+              {/* Animated connector line */}
+              {i < steps.length - 1 && (
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 + i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                  className="hidden md:block absolute top-12 left-[calc(50%+60px)] right-0 origin-left z-0"
+                >
+                  <div className="h-px bg-gradient-to-r from-border to-transparent relative">
+                    {/* Animated arrow */}
+                    <motion.div
+                      animate={{ x: [0, 8, 0], opacity: [0.3, 1, 0.3] }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                      className="absolute right-0 -top-1.5 text-accent-brand/50"
+                    >
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-3 h-3">
+                        <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </motion.div>
                   </div>
+                </motion.div>
+              )}
 
-                  {/* Icon */}
-                  <div className={`w-12 h-12 rounded-full border ${step.color} flex items-center justify-center mx-auto mb-4`}>
-                    {step.icon}
-                  </div>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -4, boxShadow: "0 8px 30px -6px rgba(0,0,0,0.1)" }}
+                className="bg-bg border border-border rounded-2xl p-8 text-center relative transition-all duration-300 h-full"
+              >
+                {/* Step number */}
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.3 + i * 0.15 }}
+                  className="font-display text-6xl text-accent-brand/10 absolute top-4 right-6"
+                >
+                  {step.num}
+                </motion.div>
 
-                  <h3 className="mb-2">{step.title}</h3>
-                  <p className="text-[0.9375rem] text-text-faint leading-[1.6] m-0">
-                    {step.desc}
-                  </p>
+                {/* Icon */}
+                <div className="w-14 h-14 rounded-2xl bg-accent-brand-soft text-accent-brand flex items-center justify-center mx-auto mb-5">
+                  {step.icon}
                 </div>
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
+
+                <h3 className="text-lg font-semibold text-text-primary mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-sm text-text-faint leading-relaxed m-0">
+                  {step.desc}
+                </p>
+              </motion.div>
+            </div>
+          ))}
+        </div>
       </Container>
     </section>
   );

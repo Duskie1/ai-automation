@@ -29,8 +29,8 @@ export function Navigation() {
     }`}>
       <Container>
         <div className="flex items-center justify-between">
-          <a href="#" className="flex items-center gap-2.5 font-bold text-lg tracking-tight">
-            <div className="w-8 h-8 rounded-[6px] bg-accent flex items-center justify-center overflow-hidden">
+          <a href="#" className="flex items-center gap-2.5 font-bold text-lg tracking-tight group">
+            <div className="w-8 h-8 rounded-[6px] bg-accent flex items-center justify-center overflow-hidden transition-transform duration-200 group-hover:scale-105">
               <svg viewBox="0 0 24 24" fill="#fff" className="w-[18px] h-[18px]">
                 <path d="M 5 14.5 C 5 9, 8.5 3.5, 12 3 C 15.5 3.5, 19 9, 19 14.5 L 19.8 14.5 L 19.8 19 L 18.2 19 L 18.2 15.2 L 5.8 15.2 L 5.8 19 L 4.2 19 L 4.2 14.5 Z" />
               </svg>
