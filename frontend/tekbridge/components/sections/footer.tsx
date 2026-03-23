@@ -5,6 +5,7 @@ import { useLocale } from "next-intl";
 import { clsx } from "clsx";
 import { Container } from "../ui/container";
 import { locales } from "@/i18n/config";
+import { ShieldCheck } from "lucide-react";
 
 export function Footer() {
   const locale = useLocale();
@@ -26,9 +27,7 @@ export function Footer() {
           </div>
           <div className="flex items-center gap-4 flex-wrap">
             <div className="flex items-center gap-1.5 text-[0.75rem] font-semibold text-green bg-green/10 border border-green/20 px-2.5 py-1 rounded-[6px]">
-              <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 stroke-green stroke-2 fill-none">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-              </svg>
+              <ShieldCheck size={14} strokeWidth={1.75} />
               GDPR
             </div>
             <div className="flex gap-1.5">

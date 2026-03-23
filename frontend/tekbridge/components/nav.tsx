@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Container } from "./ui/container";
 import { Button } from "./ui/button";
+import { Menu, X } from "lucide-react";
 
 export function Navigation() {
   const t = useTranslations();
@@ -62,15 +63,7 @@ export function Navigation() {
             aria-label="Menu"
             aria-expanded={isOpen}
           >
-            {isOpen ? (
-              <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-current stroke-2 fill-none">
-                <path d="M18 6L6 18M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-current stroke-2 fill-none">
-                <path d="M3 12h18M3 6h18M3 18h18" />
-              </svg>
-            )}
+            {isOpen ? <X size={24} strokeWidth={1.75} /> : <Menu size={24} strokeWidth={1.75} />}
           </button>
         </div>
 

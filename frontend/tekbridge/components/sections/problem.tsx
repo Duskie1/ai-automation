@@ -15,7 +15,9 @@ export function Problem() {
   ];
 
   return (
-    <section id="problem" className="bg-bg-alt py-20 md:py-28 lg:py-36">
+    <section id="problem" className="bg-bg-alt py-20 md:py-28 lg:py-36 relative">
+      {/* Gradient transition to dark features below */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-hero-dark pointer-events-none" />
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -48,11 +50,11 @@ export function Problem() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: 0.15 + i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-bg border border-border rounded-2xl p-8 text-center hover-lift"
+              className="bg-bg border border-border rounded-2xl p-8 text-center shadow-sm hover-lift"
             >
               <div className="font-display text-5xl md:text-6xl text-red leading-none mb-3">
                 {stat.value === 0 ? (
-                  <span>{stat.value}{stat.suffix}</span>
+                  <span>0<span className="text-3xl md:text-4xl">%</span></span>
                 ) : (
                   <AnimatedCounter target={stat.value} suffix={stat.suffix} duration={2000} />
                 )}

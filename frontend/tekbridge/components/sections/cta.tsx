@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Container } from "../ui/container";
+import { Globe, MapPin } from "lucide-react";
 
 export function CTA() {
   const t = useTranslations();
@@ -21,13 +22,13 @@ export function CTA() {
   };
 
   const inputClass =
-    "w-full bg-white/[0.06] border border-white/10 rounded-xl px-4 py-3 text-[0.9rem] text-hero-text placeholder:text-white/30 outline-none transition-colors duration-200 focus:border-accent-brand focus:bg-white/[0.08] font-[inherit]";
+    "w-full bg-white/[0.06] border border-white/10 rounded-xl px-4 py-3 text-[0.9rem] text-hero-text placeholder:text-white/40 outline-none transition-colors duration-200 focus:border-accent-brand focus:bg-white/[0.08] font-[inherit]";
 
   return (
     <section id="contact" className="relative bg-hero-dark text-hero-text py-20 md:py-28 lg:py-36 overflow-hidden noise-overlay">
       {/* Subtle gradient glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-accent-brand/5 rounded-full blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-accent-brand/15 rounded-full blur-[120px]" />
       </div>
 
       <Container className="relative z-10">
@@ -100,7 +101,7 @@ export function CTA() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <span className="text-sm text-hero-muted">
             {t("cta_or_email")}{" "}
@@ -118,20 +119,13 @@ export function CTA() {
           className="flex justify-center gap-8 flex-wrap"
         >
           <div className="flex items-center gap-2 text-sm text-hero-muted">
-            <svg viewBox="0 0 24 24" className="w-4 h-4 stroke-accent-brand stroke-1.5 fill-none">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M2 12h20" />
-              <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
-            </svg>
+            <Globe size={16} strokeWidth={1.75} className="text-accent-brand" />
             <a href="https://tekbridge.sk" className="text-accent-brand font-semibold hover:underline transition-colors">
               tekbridge.sk
             </a>
           </div>
           <div className="flex items-center gap-2 text-sm text-hero-muted">
-            <svg viewBox="0 0 24 24" className="w-4 h-4 stroke-accent-brand stroke-1.5 fill-none">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
+            <MapPin size={16} strokeWidth={1.75} className="text-accent-brand" />
             {t("location")}
           </div>
         </motion.div>

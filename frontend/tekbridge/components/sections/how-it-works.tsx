@@ -4,6 +4,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { Container } from "../ui/container";
 import { useEffect, useState, memo } from "react";
+import { Phone, Mic, CalendarDays, ChevronLeft, ChevronRight, Check } from "lucide-react";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -31,9 +32,7 @@ function CallNotification({ t }: { t: ReturnType<typeof useTranslations> }) {
 
         <div className="flex items-center gap-4 mb-5">
           <div className="w-12 h-12 rounded-full bg-accent-brand-soft flex items-center justify-center text-accent-brand shrink-0">
-            <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-            </svg>
+            <Phone size={24} strokeWidth={1.75} />
           </div>
           <div className="min-w-0">
             <div className="text-base font-bold text-text-primary leading-tight">{t("wf1_caller")}</div>
@@ -78,10 +77,7 @@ function ConversationUI({ t }: { t: ReturnType<typeof useTranslations> }) {
         {/* Chat header */}
         <div className="flex items-center gap-3 px-5 py-3.5 border-b border-border bg-bg-alt/50">
           <div className="w-8 h-8 rounded-full bg-accent-brand-soft flex items-center justify-center shrink-0">
-            <svg viewBox="0 0 24 24" className="w-4 h-4 text-accent-brand" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3z" />
-              <path d="M19 10v2a7 7 0 01-14 0v-2" />
-            </svg>
+            <Mic size={16} strokeWidth={1.75} />
           </div>
           <div>
             <div className="text-sm font-bold text-text-primary">TekBridge AI</div>
@@ -203,12 +199,7 @@ const WeekCalendar = memo(function WeekCalendar({ t, locale }: { t: ReturnType<t
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-3.5 border-b border-border bg-bg-alt/50">
           <div className="flex items-center gap-2">
-            <svg viewBox="0 0 24 24" className="w-4 h-4 text-accent-brand" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <rect x="3" y="4" width="18" height="18" rx="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <line x1="16" y1="2" x2="16" y2="6" strokeLinecap="round"/>
-              <line x1="8" y1="2" x2="8" y2="6" strokeLinecap="round"/>
-              <line x1="3" y1="10" x2="21" y2="10" strokeLinecap="round"/>
-            </svg>
+            <CalendarDays size={16} strokeWidth={1.75} />
             <span className="text-sm font-bold text-text-primary">TekBridge Calendar</span>
           </div>
           <div className="flex gap-1 text-xs">
@@ -327,9 +318,7 @@ function StepRow({
               transition={{ duration: 0.3, delay: 0.3 + i * 0.08, ease }}
               className="flex items-center gap-3 text-sm text-text-secondary"
             >
-              <svg viewBox="0 0 24 24" className="w-4 h-4 text-accent-brand shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              <Check size={16} strokeWidth={2.5} className="text-accent-brand shrink-0" />
               {bullet}
             </motion.li>
           ))}
