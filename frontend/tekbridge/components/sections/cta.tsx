@@ -24,7 +24,7 @@ export function CTA() {
     "w-full bg-white/[0.06] border border-white/10 rounded-xl px-4 py-3 text-[0.9rem] text-hero-text placeholder:text-white/30 outline-none transition-colors duration-200 focus:border-accent-brand focus:bg-white/[0.08] font-[inherit]";
 
   return (
-    <section id="contact" className="relative bg-hero-dark text-hero-text py-24 md:py-32 lg:py-40 overflow-hidden">
+    <section id="contact" className="relative bg-hero-dark text-hero-text py-20 md:py-28 lg:py-36 overflow-hidden noise-overlay">
       {/* Subtle gradient glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-accent-brand/5 rounded-full blur-[100px]" />

@@ -76,13 +76,16 @@ export function Hero() {
               { key: "pickup", label: t("hero_stat_pickup") },
               { key: "captured", label: t("hero_stat_captured") },
               { key: "missed", label: t("hero_stat_missed") },
-            ].map((stat) => (
-              <span
+            ].map((stat, i) => (
+              <motion.span
                 key={stat.key}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.5 + i * 0.05 }}
                 className="bg-bg-alt border border-border rounded-full px-4 py-1.5 text-text-secondary"
               >
                 {stat.label}
-              </span>
+              </motion.span>
             ))}
           </motion.div>
 

@@ -15,7 +15,7 @@ export function Problem() {
   ];
 
   return (
-    <section id="problem" className="bg-bg-alt py-24 md:py-32 lg:py-40">
+    <section id="problem" className="bg-bg-alt py-20 md:py-28 lg:py-36">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -41,9 +41,13 @@ export function Problem() {
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
-          {stats.map((stat) => (
-            <div
+          {stats.map((stat, i) => (
+            <motion.div
               key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4, delay: 0.15 + i * 0.06, ease: [0.16, 1, 0.3, 1] }}
               className="bg-bg border border-border rounded-2xl p-8 text-center hover-lift"
             >
               <div className="font-display text-5xl md:text-6xl text-red leading-none mb-3">
@@ -56,7 +60,7 @@ export function Problem() {
               <p className="text-sm md:text-base text-text-faint m-0 leading-relaxed">
                 {stat.label}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </Container>
