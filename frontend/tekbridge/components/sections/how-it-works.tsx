@@ -7,248 +7,317 @@ import { useEffect, useState, memo } from "react";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-// ─── CALL NOTIFICATION (Product-like incoming call UI) ──────────────
+// ─── CALL NOTIFICATION (Large, detailed, product-like) ──────────────
 function CallNotification({ t }: { t: ReturnType<typeof useTranslations> }) {
   return (
-    <div className="flex items-center justify-center h-52 mb-4">
-      <motion.div
-        className="bg-white rounded-2xl shadow-lg border border-border p-5 w-60 relative"
-        initial={{ scale: 0.95, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, ease }}
-      >
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, delay: 0.15, ease }}
+      className="w-full max-w-sm mx-auto lg:mx-0"
+    >
+      <div className="bg-white rounded-xl shadow-md border border-border p-6 relative">
         {/* Live indicator */}
         <motion.div
-          className="absolute -top-1.5 -right-1.5 w-3 h-3 rounded-full bg-green"
+          className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 rounded-full bg-green"
           animate={{ scale: [1, 1.4, 1], opacity: [1, 0.6, 1] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        <div className="text-[0.6rem] font-semibold text-text-faint uppercase tracking-widest mb-3">
+        <div className="text-[0.7rem] font-semibold text-text-faint uppercase tracking-widest mb-4">
           {t("wf1_visual_status")}
         </div>
 
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 rounded-full bg-accent-brand-soft flex items-center justify-center text-accent-brand shrink-0">
-            <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <div className="flex items-center gap-4 mb-5">
+          <div className="w-12 h-12 rounded-full bg-accent-brand-soft flex items-center justify-center text-accent-brand shrink-0">
+            <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
             </svg>
           </div>
-          <div>
-            <div className="text-sm font-bold text-text-primary leading-tight">{t("wf1_caller")}</div>
-            <div className="text-xs text-text-faint">{t("wf1_caller_phone")}</div>
+          <div className="min-w-0">
+            <div className="text-base font-bold text-text-primary leading-tight">{t("wf1_caller")}</div>
+            <div className="text-sm text-text-faint mt-0.5">{t("wf1_caller_phone")}</div>
           </div>
         </div>
 
-        <div className="flex gap-2">
-          <div className="flex-1 bg-red-soft text-red rounded-xl py-2.5 text-xs font-semibold text-center">
+        {/* Call timer */}
+        <div className="flex items-center gap-2 mb-5 text-xs text-text-faint">
+          <span className="w-2 h-2 rounded-full bg-green animate-pulse" />
+          <span className="font-mono">00:03</span>
+        </div>
+
+        <div className="flex gap-3">
+          <div className="flex-1 bg-red-soft text-red rounded-xl py-3 text-sm font-semibold text-center cursor-default">
             {t("wf1_decline")}
           </div>
           <motion.div
-            className="flex-1 bg-green-soft text-green rounded-xl py-2.5 text-xs font-semibold text-center"
-            animate={{ boxShadow: ["0 0 0 0 rgba(22,163,74,0)", "0 0 0 4px rgba(22,163,74,0.12)", "0 0 0 0 rgba(22,163,74,0)"] }}
+            className="flex-1 bg-green-soft text-green rounded-xl py-3 text-sm font-semibold text-center cursor-default"
+            animate={{ boxShadow: ["0 0 0 0 rgba(22,163,74,0)", "0 0 0 5px rgba(22,163,74,0.12)", "0 0 0 0 rgba(22,163,74,0)"] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
           >
             {t("wf1_answer")}
           </motion.div>
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   );
 }
 
-// ─── CONVERSATION UI (Product-like chat transcript) ─────────────────
+// ─── CONVERSATION UI (Large chat with 5 messages) ───────────────────
 function ConversationUI({ t }: { t: ReturnType<typeof useTranslations> }) {
   return (
-    <div className="flex items-center justify-center h-52 mb-4">
-      <motion.div
-        className="bg-white rounded-2xl shadow-lg border border-border p-4 w-64"
-        initial={{ scale: 0.95, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, ease }}
-      >
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, delay: 0.15, ease }}
+      className="w-full max-w-md mx-auto lg:mx-0"
+    >
+      <div className="bg-white rounded-xl shadow-md border border-border overflow-hidden">
         {/* Chat header */}
-        <div className="flex items-center gap-2 mb-3 pb-2.5 border-b border-border-light">
-          <div className="w-6 h-6 rounded-full bg-accent-brand-soft flex items-center justify-center shrink-0">
-            <svg viewBox="0 0 24 24" className="w-3 h-3 text-accent-brand" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <div className="flex items-center gap-3 px-5 py-3.5 border-b border-border bg-bg-alt/50">
+          <div className="w-8 h-8 rounded-full bg-accent-brand-soft flex items-center justify-center shrink-0">
+            <svg viewBox="0 0 24 24" className="w-4 h-4 text-accent-brand" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3z" />
               <path d="M19 10v2a7 7 0 01-14 0v-2" />
             </svg>
           </div>
-          <span className="text-xs font-bold text-text-primary">TekBridge AI</span>
-          <span className="ml-auto w-1.5 h-1.5 rounded-full bg-green" />
+          <div>
+            <div className="text-sm font-bold text-text-primary">TekBridge AI</div>
+            <div className="text-xs text-accent-brand font-medium">Online</div>
+          </div>
+          <span className="ml-auto w-2 h-2 rounded-full bg-green" />
         </div>
 
-        {/* Messages — staggered entrance, no loop */}
-        <div className="space-y-2 min-h-[96px]">
+        {/* Messages */}
+        <div className="p-5 space-y-3">
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.3, ease }}
-            className="bg-accent-brand-soft text-text-primary rounded-xl rounded-tl-sm px-3 py-2 text-xs leading-relaxed max-w-[88%]"
           >
-            {t("wf2_msg_ai1")}
+            <div className="bg-accent-brand-soft text-text-primary rounded-2xl rounded-tl-sm px-4 py-2.5 text-sm leading-relaxed max-w-[85%]">
+              {t("wf2_msg_ai1")}
+            </div>
+            <div className="text-[0.65rem] text-text-faint mt-1 ml-1">09:01</div>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.9, ease }}
-            className="bg-bg-alt text-text-primary rounded-xl rounded-tr-sm px-3 py-2 text-xs leading-relaxed max-w-[75%] ml-auto"
+            transition={{ duration: 0.4, delay: 0.8, ease }}
           >
-            {t("wf2_msg_caller")}
+            <div className="bg-bg-alt text-text-primary rounded-2xl rounded-tr-sm px-4 py-2.5 text-sm leading-relaxed max-w-[70%] ml-auto">
+              {t("wf2_msg_caller")}
+            </div>
+            <div className="text-[0.65rem] text-text-faint mt-1 text-right mr-1">09:01</div>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 1.5, ease }}
-            className="bg-accent-brand-soft text-text-primary rounded-xl rounded-tl-sm px-3 py-2 text-xs leading-relaxed max-w-[88%]"
+            transition={{ duration: 0.4, delay: 1.3, ease }}
           >
-            {t("wf2_msg_ai2")}
+            <div className="bg-accent-brand-soft text-text-primary rounded-2xl rounded-tl-sm px-4 py-2.5 text-sm leading-relaxed max-w-[85%]">
+              {t("wf2_msg_ai2")}
+            </div>
+            <div className="text-[0.65rem] text-text-faint mt-1 ml-1">09:02</div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 1.8, ease }}
+          >
+            <div className="bg-accent-brand-soft text-text-primary rounded-2xl rounded-tl-sm px-4 py-2.5 text-sm leading-relaxed max-w-[85%]">
+              {t("wf2_msg_ai3")}
+            </div>
+            <div className="text-[0.65rem] text-text-faint mt-1 ml-1">09:02</div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 2.3, ease }}
+          >
+            <div className="bg-bg-alt text-text-primary rounded-2xl rounded-tr-sm px-4 py-2.5 text-sm leading-relaxed max-w-[70%] ml-auto">
+              {t("wf2_msg_caller2")}
+            </div>
+            <div className="text-[0.65rem] text-text-faint mt-1 text-right mr-1">09:02</div>
           </motion.div>
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   );
 }
 
-// ─── BOOKING CALENDAR (Polished product-like calendar) ──────────────
-const BookingCalendar = memo(function BookingCalendar({ locale }: { locale: string }) {
-  const [phase, setPhase] = useState(0);
+// ─── WEEK CALENDAR (Cal.com-inspired, wide, with events) ────────────
+const WeekCalendar = memo(function WeekCalendar({ t, locale }: { t: ReturnType<typeof useTranslations>; locale: string }) {
+  const [showBooked, setShowBooked] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setPhase((p) => (p + 1) % 4);
-    }, 2000);
-    return () => clearInterval(interval);
+    const timer = setTimeout(() => setShowBooked(true), 800);
+    return () => clearTimeout(timer);
   }, []);
 
+  // Generate 5 weekday labels starting from next Monday
   const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth();
-  const firstDayOfWeek = (new Date(year, month, 1).getDay() + 6) % 7;
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const days: (number | null)[] = [
-    ...Array(firstDayOfWeek).fill(null),
-    ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
-  ];
-  const targetDay = Math.min(20, daysInMonth);
+  const monday = new Date(now);
+  monday.setDate(now.getDate() + ((8 - now.getDay()) % 7 || 7));
 
-  const monthLabel = new Intl.DateTimeFormat(locale, { month: "long", year: "numeric" }).format(now);
-  const capitalizedMonth = monthLabel.charAt(0).toUpperCase() + monthLabel.slice(1);
-
-  const mondayRef = new Date(now);
-  mondayRef.setDate(now.getDate() - ((now.getDay() + 6) % 7));
-  const dayNames = Array.from({ length: 7 }, (_, i) => {
-    const date = new Date(mondayRef);
-    date.setDate(mondayRef.getDate() + i);
-    return new Intl.DateTimeFormat(locale, { weekday: "narrow" }).format(date);
+  const weekDays = Array.from({ length: 5 }, (_, i) => {
+    const d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    const dayName = new Intl.DateTimeFormat(locale, { weekday: "short" }).format(d);
+    const dayNum = d.getDate();
+    return { name: dayName.charAt(0).toUpperCase() + dayName.slice(1), num: dayNum };
   });
 
+  const hours = ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00"];
+
+  // Events placed by [dayIndex, startHourIndex, span, label, color]
+  type EventDef = { day: number; start: number; span: number; label: string; color: string; bg: string };
+  const events: EventDef[] = [
+    { day: 0, start: 1, span: 1, label: t("wf3_consultation"), color: "text-accent-brand", bg: "bg-accent-brand/10" },
+    { day: 1, start: 2, span: 2, label: t("wf3_followup"), color: "text-amber", bg: "bg-amber/10" },
+    { day: 2, start: 0, span: 1, label: t("wf3_new_client"), color: "text-accent-brand", bg: "bg-accent-brand/10" },
+    { day: 3, start: 1, span: 1, label: `${t("wf1_caller")} ✓`, color: "text-green", bg: "bg-green/10" },
+    { day: 4, start: 3, span: 2, label: t("wf3_consultation"), color: "text-red", bg: "bg-red/10" },
+  ];
+
   return (
-    <div className="flex items-center justify-center h-52 mb-4">
-      <motion.div
-        className="bg-white rounded-2xl shadow-lg border border-border p-4 w-64"
-        initial={{ scale: 0.95, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, ease }}
-      >
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-xs font-bold text-text-primary">{capitalizedMonth}</span>
-          <div className="flex gap-1">
-            <div className="w-5 h-5 rounded bg-bg-alt flex items-center justify-center">
-              <svg className="w-3 h-3 text-text-faint" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-            </div>
-            <div className="w-5 h-5 rounded bg-bg-alt flex items-center justify-center">
-              <svg className="w-3 h-3 text-text-faint" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-            </div>
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, delay: 0.15, ease }}
+      className="w-full max-w-lg mx-auto lg:mx-0"
+    >
+      <div className="bg-white rounded-xl shadow-md border border-border overflow-hidden">
+        {/* Header */}
+        <div className="flex items-center justify-between px-5 py-3.5 border-b border-border bg-bg-alt/50">
+          <div className="flex items-center gap-2">
+            <svg viewBox="0 0 24 24" className="w-4 h-4 text-accent-brand" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <rect x="3" y="4" width="18" height="18" rx="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <line x1="16" y1="2" x2="16" y2="6" strokeLinecap="round"/>
+              <line x1="8" y1="2" x2="8" y2="6" strokeLinecap="round"/>
+              <line x1="3" y1="10" x2="21" y2="10" strokeLinecap="round"/>
+            </svg>
+            <span className="text-sm font-bold text-text-primary">TekBridge Calendar</span>
+          </div>
+          <div className="flex gap-1 text-xs">
+            <span className="px-2.5 py-1 rounded-md bg-accent-brand text-white font-semibold">Week</span>
+            <span className="px-2.5 py-1 rounded-md text-text-faint font-medium">Month</span>
           </div>
         </div>
 
-        <div className="grid grid-cols-7 gap-1 mb-1.5">
-          {dayNames.map((day, i) => (
-            <div key={i} className="text-[0.55rem] text-text-faint text-center font-semibold uppercase">
-              {day}
+        {/* Week grid */}
+        <div className="overflow-x-auto">
+          <div className="min-w-[420px]">
+            {/* Day headers */}
+            <div className="grid grid-cols-[56px_repeat(5,1fr)] border-b border-border">
+              <div />
+              {weekDays.map((d, i) => (
+                <div key={i} className="text-center py-3 border-l border-border">
+                  <div className="text-xs text-text-faint font-medium">{d.name}</div>
+                  <div className={`text-sm font-bold mt-0.5 ${i === 3 ? "text-accent-brand" : "text-text-primary"}`}>
+                    {d.num}
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        <div className="grid grid-cols-7 gap-0.5 relative">
-          {days.map((day, i) => {
-            const isTarget = day === targetDay;
-            const showBooking = isTarget && phase >= 2;
-
-            return (
-              <div
-                key={i}
-                className={`
-                  aspect-square flex items-center justify-center text-[0.65rem] rounded-md relative font-medium
-                  ${day === null ? "invisible" : "text-text-secondary"}
-                  ${isTarget ? "bg-accent-brand text-white font-bold" : ""}
-                `}
-              >
-                {day}
-                {isTarget && phase >= 1 && !showBooking && (
-                  <motion.div
-                    className="absolute inset-0 rounded-md border-2 border-accent-brand"
-                    animate={{ scale: [1, 1.15, 1], opacity: [1, 0.4, 1] }}
-                    transition={{ duration: 1.2, repeat: Infinity }}
-                  />
-                )}
-                {showBooking && (
-                  <motion.div
-                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-accent-brand text-white text-[0.55rem] px-1.5 py-0.5 rounded-full flex items-center gap-0.5 whitespace-nowrap z-10 font-semibold"
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                  >
-                    <svg className="w-1.5 h-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                    09:00
-                  </motion.div>
-                )}
-              </div>
-            );
-          })}
+            {/* Time slots */}
+            <div className="relative">
+              {hours.map((hour, hi) => (
+                <div key={hour} className="grid grid-cols-[56px_repeat(5,1fr)] h-11 border-b border-border-light last:border-b-0">
+                  <div className="text-[0.65rem] text-text-faint font-mono pr-3 text-right pt-1 font-medium">{hour}</div>
+                  {Array.from({ length: 5 }, (_, di) => (
+                    <div key={di} className="border-l border-border-light relative">
+                      {/* Events */}
+                      {showBooked && events
+                        .filter(e => e.day === di && e.start === hi)
+                        .map((event, ei) => (
+                          <motion.div
+                            key={ei}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.3, delay: event.day * 0.08, ease }}
+                            className={`absolute inset-x-1 top-1 rounded-md px-2 py-1 ${event.bg} ${event.color} z-10`}
+                            style={{ height: `${event.span * 44 - 8}px` }}
+                          >
+                            <div className="text-xs font-semibold truncate">{event.label}</div>
+                            <div className="text-[0.6rem] opacity-70 font-medium">
+                              {hours[event.start]} – {hours[event.start + event.span] || "15:00"}
+                            </div>
+                          </motion.div>
+                        ))
+                      }
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   );
 });
+
+// ─── STEP ROW ───────────────────────────────────────────────────────
+function StepRow({
+  num,
+  title,
+  desc,
+  visual,
+  reverse,
+}: {
+  num: string;
+  title: string;
+  desc: string;
+  visual: React.ReactNode;
+  reverse?: boolean;
+}) {
+  return (
+    <div className={`flex flex-col ${reverse ? "lg:flex-row-reverse" : "lg:flex-row"} items-center gap-10 lg:gap-16`}>
+      {/* Text side */}
+      <motion.div
+        initial={{ opacity: 0, x: reverse ? 20 : -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.5, ease }}
+        className="flex-1 text-center lg:text-left"
+      >
+        <span className="inline-block text-sm font-bold text-accent-brand tracking-wider mb-3 font-mono">
+          STEP {num}
+        </span>
+        <h3 className="text-2xl md:text-3xl text-text-primary mb-3">
+          {title}
+        </h3>
+        <p className="text-base text-text-faint leading-relaxed max-w-md mx-auto lg:mx-0">
+          {desc}
+        </p>
+      </motion.div>
+
+      {/* Visual side — takes more space */}
+      <div className="flex-1 lg:flex-[1.3] w-full">
+        {visual}
+      </div>
+    </div>
+  );
+}
 
 // ─── MAIN COMPONENT ────────────────────────────────────────────────
 export function HowItWorks() {
   const t = useTranslations();
   const locale = useLocale();
-
-  const steps = [
-    {
-      num: "01",
-      title: t("wf1_title"),
-      desc: t("wf1_desc"),
-      visual: <CallNotification t={t} />,
-    },
-    {
-      num: "02",
-      title: t("wf2_title"),
-      desc: t("wf2_desc"),
-      visual: <ConversationUI t={t} />,
-    },
-    {
-      num: "03",
-      title: t("wf3_title"),
-      desc: t("wf3_desc"),
-      visual: <BookingCalendar locale={locale} />,
-    },
-  ];
 
   return (
     <section id="how-it-works" className="py-20 md:py-28 lg:py-36 bg-bg-alt">
@@ -258,67 +327,36 @@ export function HowItWorks() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, ease }}
+          className="text-center mb-16 md:mb-20"
         >
-          <h2 className="text-center mb-4">{t("how_title")}</h2>
+          <h2 className="mb-4">{t("how_title")}</h2>
+          <p className="text-text-faint max-w-[520px] mx-auto leading-relaxed text-lg">
+            {t("how_desc")}
+          </p>
         </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5, delay: 0.1, ease }}
-          className="text-center text-text-faint max-w-[520px] mx-auto mb-14 leading-relaxed"
-        >
-          {t("how_desc")}
-        </motion.p>
+        <div className="space-y-16 md:space-y-24 max-w-5xl mx-auto">
+          <StepRow
+            num="01"
+            title={t("wf1_title")}
+            desc={t("wf1_desc")}
+            visual={<CallNotification t={t} />}
+          />
 
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-5 max-w-5xl mx-auto">
-          {steps.map((step, i) => (
-            <div key={step.num} className="flex-1 relative">
-              {/* Connector arrow */}
-              {i < steps.length - 1 && (
-                <motion.div
-                  initial={{ opacity: 0, scaleX: 0 }}
-                  whileInView={{ opacity: 1, scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.6 + i * 0.2, ease }}
-                  className="hidden lg:flex absolute top-1/2 -right-2.5 w-5 items-center justify-center z-10 origin-left"
-                >
-                  <motion.div
-                    animate={{ x: [0, 4, 0], opacity: [0.3, 0.8, 0.3] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    className="text-accent-brand"
-                  >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
-                      <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </motion.div>
-                </motion.div>
-              )}
+          <StepRow
+            num="02"
+            title={t("wf2_title")}
+            desc={t("wf2_desc")}
+            visual={<ConversationUI t={t} />}
+            reverse
+          />
 
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: 0.15 + i * 0.12, ease }}
-                className="bg-bg border border-border rounded-2xl p-6 md:p-8 text-center relative h-full overflow-hidden hover-lift"
-              >
-                {/* Step number */}
-                <div className="font-display text-6xl md:text-7xl text-accent-brand/[0.06] absolute top-4 right-5 select-none font-normal">
-                  {step.num}
-                </div>
-
-                {step.visual}
-
-                <h3 className="text-lg text-text-primary mb-2 relative z-10">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-text-faint leading-relaxed m-0 relative z-10">
-                  {step.desc}
-                </p>
-              </motion.div>
-            </div>
-          ))}
+          <StepRow
+            num="03"
+            title={t("wf3_title")}
+            desc={t("wf3_desc")}
+            visual={<WeekCalendar t={t} locale={locale} />}
+          />
         </div>
       </Container>
     </section>
