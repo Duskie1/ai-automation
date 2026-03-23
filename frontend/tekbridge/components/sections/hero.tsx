@@ -34,7 +34,10 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-2xl mx-auto mb-5"
           >
-            <span dangerouslySetInnerHTML={{ __html: t("hero_title") }} />
+            {t.rich("hero_title", {
+              br: () => <br />,
+              em: (chunks) => <em>{chunks}</em>,
+            })}
           </motion.h1>
 
           {/* Description */}
@@ -70,19 +73,16 @@ export function Hero() {
             className="flex flex-wrap items-center justify-center gap-3 text-[0.8125rem] font-medium"
           >
             {[
-              t("hero_stat_pickup"),
-              t("hero_stat_captured"),
-              t("hero_stat_missed"),
-            ].map((stat, i) => (
-              <motion.span
-                key={stat}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
+              { key: "pickup", label: t("hero_stat_pickup") },
+              { key: "captured", label: t("hero_stat_captured") },
+              { key: "missed", label: t("hero_stat_missed") },
+            ].map((stat) => (
+              <span
+                key={stat.key}
                 className="bg-bg-alt border border-border rounded-full px-4 py-1.5 text-text-secondary"
               >
-                {stat}
-              </motion.span>
+                {stat.label}
+              </span>
             ))}
           </motion.div>
 

@@ -11,7 +11,9 @@
       "mcp__memory__memory_create_entities",
       "mcp__memory__memory_create_relations",
       "mcp__plugin_claude-mem_mcp-search____IMPORTANT",
-      "mcp__plugin_claude-mem_mcp-search__search"
+      "mcp__plugin_claude-mem_mcp-search__search",
+      "WebFetch(domain:cal.com)",
+      "WebFetch(domain:www.retellai.com)"
     ]
   },
   "enableAllProjectMcpServers": true,

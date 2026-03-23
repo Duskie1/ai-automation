@@ -10,8 +10,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", href, children, ...props }, ref) => {
     const classes = clsx(
-      "inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 rounded-full",
+      "inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 rounded-full outline-none",
       "hover:scale-[1.02] active:scale-[0.98]",
+      "focus-visible:ring-2 focus-visible:ring-accent-brand focus-visible:ring-offset-2",
       {
         "bg-accent text-white hover:bg-accent-hover hover:shadow-lg hover:shadow-accent/20":
           variant === "primary",

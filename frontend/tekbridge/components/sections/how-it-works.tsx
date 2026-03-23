@@ -1,12 +1,12 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { Container } from "../ui/container";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 
 // ─── ANIMATED PHONE VISUAL ─────────────────────────────────────────────
-function AnimatedPhone() {
+function AnimatedPhone({ status }: { status: string }) {
   return (
     <div className="relative flex items-center justify-center h-40 mb-6">
       {/* Ring pulse waves */}
@@ -48,14 +48,14 @@ function AnimatedPhone() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.4 }}
       >
-        <span className="text-xs font-medium text-text-faint">Incoming call...</span>
+        <span className="text-xs font-medium text-text-faint">{status}</span>
       </motion.div>
     </div>
   );
 }
 
 // ─── SOUND WAVE VISUAL ─────────────────────────────────────────────────
-function SoundWaveVisual() {
+function SoundWaveVisual({ greeting }: { greeting: string }) {
   const barDelays = [0, 0.1, 0.2, 0.15, 0.05, 0.25, 0.12];
 
   return (
@@ -105,7 +105,7 @@ function SoundWaveVisual() {
         transition={{ delay: 0.3 }}
       >
         <span className="text-xs text-text-faint">
-          "Dobrý deň..."
+          &quot;{greeting}&quot;
           <motion.span
             animate={{ opacity: [1, 0] }}
             transition={{ duration: 0.8, repeat: Infinity }}
@@ -119,7 +119,7 @@ function SoundWaveVisual() {
 }
 
 // ─── ANIMATED CALENDAR VISUAL ──────────────────────────────────────────
-function AnimatedCalendar() {
+const AnimatedCalendar = memo(function AnimatedCalendar({ locale }: { locale: string }) {
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
@@ -129,15 +129,30 @@ function AnimatedCalendar() {
     return () => clearInterval(interval);
   }, []);
 
-  const days = [
-    null, null, null, null, null, 1, 2,
-    3, 4, 5, 6, 7, 8, 9,
-    10, 11, 12, 13, 14, 15, 16,
-    17, 18, 19, 20, 21, 22, 23,
-    24, 25, 26, 27, 28, 29, 30
+  // Build calendar grid dynamically from current month
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+  const firstDayOfWeek = (new Date(year, month, 1).getDay() + 6) % 7; // 0=Mon
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const days: (number | null)[] = [
+    ...Array(firstDayOfWeek).fill(null),
+    ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
   ];
+  const targetDay = Math.min(20, daysInMonth);
 
-  const targetDay = 20;
+  // Locale-aware month name (capitalize first letter)
+  const monthLabel = new Intl.DateTimeFormat(locale, { month: "long", year: "numeric" }).format(now);
+  const capitalizedMonth = monthLabel.charAt(0).toUpperCase() + monthLabel.slice(1);
+
+  // Locale-aware day abbreviations (Mon-Sun) using dynamic Monday reference
+  const mondayRef = new Date(now);
+  mondayRef.setDate(now.getDate() - ((now.getDay() + 6) % 7));
+  const dayNames = Array.from({ length: 7 }, (_, i) => {
+    const date = new Date(mondayRef);
+    date.setDate(mondayRef.getDate() + i);
+    return new Intl.DateTimeFormat(locale, { weekday: "narrow" }).format(date);
+  });
 
   return (
     <div className="relative h-56 mb-6 flex items-center justify-center">
@@ -149,7 +164,7 @@ function AnimatedCalendar() {
       >
         {/* Calendar header */}
         <div className="flex items-center justify-between mb-3">
-          <span className="text-sm font-semibold text-text-primary">Marec 2026</span>
+          <span className="text-sm font-semibold text-text-primary">{capitalizedMonth}</span>
           <div className="flex gap-1">
             <div className="w-5 h-5 rounded bg-bg-alt flex items-center justify-center">
               <svg className="w-3 h-3 text-text-faint" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -166,8 +181,8 @@ function AnimatedCalendar() {
 
         {/* Day headers */}
         <div className="grid grid-cols-7 gap-1 mb-2">
-          {["Po", "Ut", "St", "Št", "Pi", "So", "Ne"].map((day) => (
-            <div key={day} className="text-[0.625rem] text-text-faint text-center font-medium">
+          {dayNames.map((day, i) => (
+            <div key={i} className="text-[0.625rem] text-text-faint text-center font-medium">
               {day}
             </div>
           ))}
@@ -228,30 +243,31 @@ function AnimatedCalendar() {
       </motion.div>
     </div>
   );
-}
+});
 
 // ─── MAIN COMPONENT ────────────────────────────────────────────────────
 export function HowItWorks() {
   const t = useTranslations();
+  const locale = useLocale();
 
   const steps = [
     {
       num: "01",
       title: t("wf1_title"),
       desc: t("wf1_desc"),
-      visual: <AnimatedPhone />,
+      visual: <AnimatedPhone status={t("wf1_visual_status")} />,
     },
     {
       num: "02",
       title: t("wf2_title"),
       desc: t("wf2_desc"),
-      visual: <SoundWaveVisual />,
+      visual: <SoundWaveVisual greeting={t("wf2_visual_greeting")} />,
     },
     {
       num: "03",
       title: t("wf3_title"),
       desc: t("wf3_desc"),
-      visual: <AnimatedCalendar />,
+      visual: <AnimatedCalendar locale={locale} />,
     },
   ];
 

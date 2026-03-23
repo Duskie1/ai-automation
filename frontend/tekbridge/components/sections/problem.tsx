@@ -24,7 +24,9 @@ export function Problem() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <h2 className="text-center max-w-2xl mx-auto mb-4">
-            <span dangerouslySetInnerHTML={{ __html: t("problem_title") }} />
+            {t.rich("problem_title", {
+              br: () => <br />,
+            })}
           </h2>
         </motion.div>
 
@@ -39,23 +41,22 @@ export function Problem() {
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
-          {stats.map((stat, i) => (
-            <motion.div
+          {stats.map((stat) => (
+            <div
               key={stat.label}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: 0.2 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -4, boxShadow: "0 8px 30px -6px rgba(0,0,0,0.1)" }}
-              className="bg-bg border border-border rounded-2xl p-8 text-center transition-shadow"
+              className="bg-bg border border-border rounded-2xl p-8 text-center hover-lift"
             >
               <div className="font-display text-5xl md:text-6xl text-red leading-none mb-3">
-                <AnimatedCounter target={stat.value} suffix={stat.suffix} duration={2000} />
+                {stat.value === 0 ? (
+                  <span>{stat.value}{stat.suffix}</span>
+                ) : (
+                  <AnimatedCounter target={stat.value} suffix={stat.suffix} duration={2000} />
+                )}
               </div>
               <p className="text-sm md:text-base text-text-faint m-0 leading-relaxed">
                 {stat.label}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </Container>

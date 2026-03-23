@@ -16,20 +16,32 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) setIsOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setIsOpen(false);
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-100 py-4 transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 right-0 z-[100] py-4 transition-all duration-300 ${
       scrolled
         ? "bg-white/85 backdrop-blur-xl shadow-[0_1px_0_var(--color-border)]"
         : "bg-transparent"
     }`}>
       <Container>
         <div className="flex items-center justify-between">
-          <a href="#" className="flex items-center gap-2.5 font-bold text-lg tracking-tight group">
+          <a href="#" className="flex items-center gap-2.5 font-bold text-lg tracking-tight group" aria-label="TekBridge home">
             <div className="w-8 h-8 rounded-[6px] bg-accent flex items-center justify-center overflow-hidden transition-transform duration-200 group-hover:scale-105">
               <svg viewBox="0 0 24 24" fill="#fff" className="w-[18px] h-[18px]">
                 <path d="M 5 14.5 C 5 9, 8.5 3.5, 12 3 C 15.5 3.5, 19 9, 19 14.5 L 19.8 14.5 L 19.8 19 L 18.2 19 L 18.2 15.2 L 5.8 15.2 L 5.8 19 L 4.2 19 L 4.2 14.5 Z" />
@@ -48,6 +60,7 @@ export function Navigation() {
             className="md:hidden p-2 min-h-[44px] min-w-[44px] flex items-center justify-center bg-transparent border-none text-text-primary cursor-pointer"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Menu"
+            aria-expanded={isOpen}
           >
             {isOpen ? (
               <svg viewBox="0 0 24 24" className="w-6 h-6 stroke-current stroke-2 fill-none">
