@@ -302,7 +302,7 @@ function StepRow({
         className="flex-1 text-center lg:text-left relative"
       >
         {/* Large background step number */}
-        <div className="font-display text-[8rem] md:text-[10rem] leading-none text-accent-brand/[0.05] absolute -top-10 -left-4 select-none pointer-events-none hidden lg:block">
+        <div className="font-display text-[8rem] md:text-[10rem] leading-none text-accent-brand/[0.07] absolute -top-10 -left-4 select-none pointer-events-none hidden lg:block">
           {num}
         </div>
 
@@ -336,8 +336,8 @@ function StepRow({
         </ul>
       </motion.div>
 
-      {/* Visual side — takes more space */}
-      <div className="flex-1 lg:flex-[1.3] w-full">
+      {/* Visual side — takes more space, last step breaks out */}
+      <div className={`flex-1 lg:flex-[1.3] w-full ${num === "03" ? "lg:-mr-12 lg:scale-[1.02]" : ""}`}>
         {visual}
       </div>
     </div>
