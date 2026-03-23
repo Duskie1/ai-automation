@@ -218,7 +218,8 @@ const WeekCalendar = memo(function WeekCalendar({ t, locale }: { t: ReturnType<t
         </div>
 
         {/* Week grid */}
-        <div className="overflow-x-auto">
+        <div className="relative">
+          <div className="overflow-x-auto scrollbar-thin">
           <div className="min-w-[420px]">
             {/* Day headers */}
             <div className="grid grid-cols-[56px_repeat(5,1fr)] border-b border-border">
@@ -253,7 +254,7 @@ const WeekCalendar = memo(function WeekCalendar({ t, locale }: { t: ReturnType<t
                             style={{ height: `${event.span * 44 - 8}px` }}
                           >
                             <div className="text-xs font-semibold truncate">{event.label}</div>
-                            <div className="text-[0.6rem] opacity-70 font-medium">
+                            <div className="text-[0.65rem] font-medium">
                               {hours[event.start]} – {hours[event.start + event.span] || "15:00"}
                             </div>
                           </motion.div>
@@ -265,6 +266,9 @@ const WeekCalendar = memo(function WeekCalendar({ t, locale }: { t: ReturnType<t
               ))}
             </div>
           </div>
+          </div>
+          {/* Mobile scroll fade */}
+          <div className="absolute top-0 right-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none lg:hidden" />
         </div>
       </div>
     </motion.div>
@@ -276,12 +280,14 @@ function StepRow({
   num,
   title,
   desc,
+  bullets,
   visual,
   reverse,
 }: {
   num: string;
   title: string;
   desc: string;
+  bullets: string[];
   visual: React.ReactNode;
   reverse?: boolean;
 }) {
@@ -293,17 +299,41 @@ function StepRow({
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.5, ease }}
-        className="flex-1 text-center lg:text-left"
+        className="flex-1 text-center lg:text-left relative"
       >
-        <span className="inline-block text-sm font-bold text-accent-brand tracking-wider mb-3 font-mono">
+        {/* Large background step number */}
+        <div className="font-display text-[8rem] md:text-[10rem] leading-none text-accent-brand/[0.05] absolute -top-10 -left-4 select-none pointer-events-none hidden lg:block">
+          {num}
+        </div>
+
+        <span className="inline-block text-sm font-bold text-accent-brand tracking-wider mb-3 font-mono relative">
           STEP {num}
         </span>
-        <h3 className="text-2xl md:text-3xl text-text-primary mb-3">
+        <h3 className="text-2xl md:text-3xl text-text-primary mb-3 relative">
           {title}
         </h3>
-        <p className="text-base text-text-faint leading-relaxed max-w-md mx-auto lg:mx-0">
+        <p className="text-base text-text-faint leading-relaxed max-w-md mx-auto lg:mx-0 mb-5 relative">
           {desc}
         </p>
+
+        {/* Bullet list */}
+        <ul className="space-y-2.5 max-w-md mx-auto lg:mx-0 relative">
+          {bullets.map((bullet, i) => (
+            <motion.li
+              key={i}
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: 0.3 + i * 0.08, ease }}
+              className="flex items-center gap-3 text-sm text-text-secondary"
+            >
+              <svg viewBox="0 0 24 24" className="w-4 h-4 text-accent-brand shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              {bullet}
+            </motion.li>
+          ))}
+        </ul>
       </motion.div>
 
       {/* Visual side — takes more space */}
@@ -320,14 +350,14 @@ export function HowItWorks() {
   const locale = useLocale();
 
   return (
-    <section id="how-it-works" className="py-20 md:py-28 lg:py-36 bg-bg-alt">
+    <section id="how-it-works" className="py-20 md:py-28 lg:py-36 bg-bg-alt dot-pattern">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, ease }}
-          className="text-center mb-16 md:mb-20"
+          className="text-center mb-16 md:mb-20 relative z-10"
         >
           <h2 className="mb-4">{t("how_title")}</h2>
           <p className="text-text-faint max-w-[520px] mx-auto leading-relaxed text-lg">
@@ -335,11 +365,12 @@ export function HowItWorks() {
           </p>
         </motion.div>
 
-        <div className="space-y-16 md:space-y-24 max-w-5xl mx-auto">
+        <div className="space-y-16 md:space-y-24 max-w-5xl mx-auto relative z-10">
           <StepRow
             num="01"
             title={t("wf1_title")}
             desc={t("wf1_desc")}
+            bullets={[t("wf1_bullet_1"), t("wf1_bullet_2"), t("wf1_bullet_3")]}
             visual={<CallNotification t={t} />}
           />
 
@@ -347,6 +378,7 @@ export function HowItWorks() {
             num="02"
             title={t("wf2_title")}
             desc={t("wf2_desc")}
+            bullets={[t("wf2_bullet_1"), t("wf2_bullet_2"), t("wf2_bullet_3")]}
             visual={<ConversationUI t={t} />}
             reverse
           />
@@ -355,6 +387,7 @@ export function HowItWorks() {
             num="03"
             title={t("wf3_title")}
             desc={t("wf3_desc")}
+            bullets={[t("wf3_bullet_1"), t("wf3_bullet_2"), t("wf3_bullet_3")]}
             visual={<WeekCalendar t={t} locale={locale} />}
           />
         </div>
