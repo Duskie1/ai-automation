@@ -83,8 +83,8 @@ export function Features() {
   ];
 
   return (
-    <section id="features" className="py-20 md:py-28 lg:py-36">
-      <Container>
+    <section id="features" className="py-20 md:py-28 lg:py-36 bg-hero-dark text-hero-text noise-overlay">
+      <Container className="relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -93,12 +93,12 @@ export function Features() {
           className="md:text-left text-center mb-16"
         >
           <h2 className="mb-4">{t("features_title")}</h2>
-          <p className="text-lg text-text-faint max-w-2xl md:mx-0 mx-auto">
+          <p className="text-lg text-hero-muted max-w-2xl md:mx-0 mx-auto">
             {t("features_subtitle")}
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {features.map((feature, i) => (
             <motion.div
               key={feature.id}
@@ -106,19 +106,19 @@ export function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.4, delay: i * 0.04, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-bg border border-border rounded-2xl p-6 md:p-8 hover-lift"
+              className="bg-white/[0.05] border border-white/[0.08] rounded-2xl p-6 md:p-8 transition-all duration-300 hover:bg-white/[0.08] hover:border-white/[0.12]"
             >
               <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 ${
                 feature.accent === "amber"
-                  ? "bg-amber-soft text-amber"
-                  : "bg-accent-brand-soft text-accent-brand"
+                  ? "bg-amber/15 text-amber"
+                  : "bg-accent-brand/15 text-accent-brand"
               }`}>
                 {feature.icon}
               </div>
-              <h3 className="text-lg font-semibold text-text-primary mb-2">
+              <h3 className="text-lg font-semibold text-hero-text mb-2">
                 {feature.title}
               </h3>
-              <p className="text-sm text-text-faint leading-relaxed m-0">
+              <p className="text-sm text-hero-muted leading-relaxed m-0">
                 {feature.description}
               </p>
             </motion.div>
